@@ -1,0 +1,15 @@
+{% load static %}
+<header>
+  <img src="{% static 'img/logo.png' %}" />
+</header>
+<nav>
+  <ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'menu' %}">Menu</a></li>
+    <!-- Use of viewsets, not APIViews, so direct endpoints listed, not url names -->
+    <li><a href="users">Sign Up</a></li>
+    <li><a href="auth/token/login/">Sign In</a></li>
+    <li><a href="{% url 'book' %}">Book</a></li>
+  </ul>
+</nav>

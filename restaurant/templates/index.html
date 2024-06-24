@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- <section> -->
+  <div>
+  <h2 id="this" text-align="center" class="heading_shadow">Welcome to my Capstone Project</h2>
+  <p>
+      If you have any issue at any time, feel free to contact me in the submission thread, and I can tell you which endpoint
+      <br>
+      you might need to check; which queries you should be using, etc.
+      <br>
+      <br>
+      <p style="color: red;">The instructions are fairly vague for the project. As such, I have used whichever viewsets, etc., that I am happiest using,
+        and have used a variety of different ones for practice. Equally, I have used some url routers for practice, and also because it was part of the course material.
+      </p>
+      </p>
+      <p style="color: red;">Please find the endpoints for testing listed in the Readme.txt file. Because the course often gives
+        contradictory or missing information, please understand if I have made a working feature, e.g. an endpoint of "users", even if the
+        grading criteria might ask us to look at "littlelemon/users", or whatever they might ask, please grade the project on how it fulfills
+        the criteria given before we begin the project. e.g. it tells us to write some tests, although I imagine that, like with the last course,
+        they might ask in the peer review to look for specific tests that were not specified before. As we have not been given a specific number
+        of tests to perform, I have just selected a variety that I feel test the project sufficiently.</p>
+</p>
+<p style="color: red;">I am sure that you have had the same issues with the course in previous projects, so hopefully you understand why I ask this.</p>
+</p>
+      <p>
+      You can create a new superuser if you wish; or you can use the one I created:</p>
+      <p>
+      user: manager1
+      </p>
+      <p>
+      password: manager1littlelemon
+      </p>
+  </p>
+  </div>
+<!-- </section> -->
+
+<section>
+    <article id="hero">
+      <h1 class="heading_shadow">SPECIAL OFFER</h1>
+      <p>
+        30% Off This Weekend 
+      </p>
+      <a href="#" class="cta"> Book now </a>
+    </article>
+  </section>
+  <section>
+    <article>
+      <h2>Our New Menu</h2>
+      <img src="{% static 'img/grill.jpg' %}">
+      <p>
+        Our menu consists of 12-15 seasonal items based on Italian, Greek, and Turkish culture.
+      </p>
+      <p>
+        <a href="{% url 'menu' %}">See our new menu</a>
+      </p>
+    </article>
+    <article>
+      <h2>Book a table</h2>
+      <img src="{% static 'img/salad.jpg' %}">
+      <p>
+        Reserve your table for an Italian, Greek, and Turkish dining experience.
+      </p>
+      <p>
+        <a href="{% url 'book' %}">Book your table now</a>
+      </p>
+    </article>
+    <article>
+      <h2>Opening Hours</h2>
+      <img src="{% static 'img/head_chef.jpg' %}">
+      <p>
+        The Little Lemon Restaurant is open 7 days a week, except for public holidays. 
+      </p>
+      <ul>
+        <li>Mon - Fri: 2pm - 10pm</li>
+        <li>Sat: 2pm - 11pm</li>
+        <li>Sun: 2pm - 9pm</li>
+      </ul>
+    </article>
+  </section>
+{% endblock %}
