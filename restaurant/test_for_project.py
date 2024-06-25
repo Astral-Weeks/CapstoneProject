@@ -1,7 +1,11 @@
 from django.test import TestCase
 from restaurant.models import Menu, Booking
 from django.contrib.auth.models import User
-from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
+from rest_framework.test import force_authenticate
+
+
+# TESTS ARE IN BOTH THE TESTS FOLDER AND BACKED UP HERE
+
 
 # ///////////////////////////////////////////////////////////////
 # Tests on the User API

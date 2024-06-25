@@ -14,6 +14,9 @@ def index(request):
 def about(request):
     return render(request, 'about.html', {})
 
+def bookingpage(request):
+    return render(request, 'booking.html', {})
+
 
 class UsersView(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -43,7 +46,14 @@ class MenuItemsView(generics.ListCreateAPIView):
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = []
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            permission_classes = []
+        elif self.request.method != 'GET':
+            permission_classes = [IsManager]
+        
+        return [permission() for permission in permission_classes]
 
 
 class BookingView(generics.ListCreateAPIView):

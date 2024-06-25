@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section>
+  <article>
+    <h1>Booking</h1>
+    <!--Begin row-->
+    <div class="row">
+      <!--Begin col-->
+      <div class="column">
+        <p>
+          Bookings need to be done by an authenticated user.
+        </p>
+        <p>
+          Please create a token and submit a valid POST request to "restaurant/booking/" using Insomnia or Postman.
+        </p>
+
+        <p>
+          
+        </p>
+
+        <p>
+        
+        </p>
+
+        <p>
+    
+        </p>
+
+        <p>
+        </p>
+      </div>
+      <!--End col-->
+
+      <!--Begin col-->
+      <div class="column">
+        <figure class="figure">
+          <img
+            src="{% static 'img/mario-and-adrian.jpg' %}"
+            alt="Mario and Adrian"
+          />
+          <figcaption class="figure-caption">
+            Little Lemon owners Mario and Adrian.
+          </figcaption>
+        </figure>
+      </div>
+      <!--End col-->
+    </div>
+    <!--End row-->
+  </article>
+</section>
+{% endblock %}
