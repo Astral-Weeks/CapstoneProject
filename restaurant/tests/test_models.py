@@ -1,7 +1,7 @@
 from django.test import TestCase
 from restaurant.models import Menu, Booking
 from django.contrib.auth.models import User
-
+from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 
 # ///////////////////////////////////////////////////////////////
 # Tests on the User API
@@ -48,17 +48,24 @@ class MenuTest3(TestCase):
 
 class BookingTest(TestCase):
     def test_booking(self):
-        booking = Booking.objects.create(Name="Joanna", No_of_guests="3", BookingDate="2024-09-02")
-        bookingstr = booking.get_booking()
-        self.assertEqual(bookingstr, 'Joanna : 3 : 2024-09-02')
 
-class BookingTest2(TestCase):
-    def test_booking(self):
-        booking = Booking.objects.create(Name="Amir", No_of_guests="2", BookingDate="2024-10-03")
+        User.objects.create(username="Joanna234", email="jo234@jmail.com", password="joannalittlelemon")
+        user = User.objects.get(username='Syd')
+        client = APIClient()
+        client.force_authenticate(user=user)
+        booking = Booking.objects.create(username="Joanna234", Name="Joanna", No_of_guests="3", BookingDate="2024-09-02")
         bookingstr = booking.get_booking()
-        self.assertEqual(bookingstr, 'Amir : 2 : 2024-10-03')
+        self.assertEqual(user.email, "jo234@jmail.com")
+        self.assertEqual(bookingstr, 'Joanna234 : 3 : 2024-09-02')
 
-    def test_delete_booking(self):
-        booking = Booking.objects.filter(Name="Amir", No_of_guests="2", BookingDate="2024-10-03")
-        booking.delete()
-        self.assertEqual(Booking.objects.count(), 0)
+# class BookingTest2(TestCase):
+#     def test_booking(self):
+#         item = User.objects.create(username="Amir22", email="amir@awesomemail.com", password="amirlittlelemon")
+#         booking = Booking.objects.create(username="Amir22", Name="Amir", No_of_guests="2", BookingDate="2024-10-03")
+#         bookingstr = booking.get_booking()
+#         self.assertEqual(bookingstr, 'Amir : 2 : 2024-10-03')
+
+#     def test_delete_booking(self):
+#         booking = Booking.objects.filter(Name="Amir", No_of_guests="2", BookingDate="2024-10-03")
+#         booking.delete()
+#         self.assertEqual(Booking.objects.count(), 0)

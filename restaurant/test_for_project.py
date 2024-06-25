@@ -1,7 +1,7 @@
 from django.test import TestCase
 from restaurant.models import Menu, Booking
 from django.contrib.auth.models import User
-
+from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 
 # ///////////////////////////////////////////////////////////////
 # Tests on the User API
@@ -41,3 +41,36 @@ class MenuTest3(TestCase):
         item_to_change.save()
         UpdatedTBoneSteak = item_to_change.get_item()
         self.assertEqual(UpdatedTBoneSteak, 'Title: T-Bone Steak  Price: 13.5  Inventory: 20')
+
+
+# ///////////////////////////////////////////////////////////////
+# Tests on the Booking API
+
+class BookingTest(TestCase):
+    def test_booking(self):
+        # creating user
+        User.objects.create(username="Joanna234", email="jo234@jmail.com", password="joannalittlelemon")
+        user = User.objects.get(username='Joanna234')
+        # creating booking with simulated authentication
+        booking = Booking.objects.create(username=user, Name="Joanna", No_of_guests="3", BookingDate="2024-09-02")
+        force_authenticate(booking, user=user)
+        bookingstr = booking.get_booking()
+        # expected result
+        self.assertEqual(bookingstr, 'Joanna : 3 : 2024-09-02')
+
+class BookingTest2(TestCase):
+    def test_booking(self):
+        # creating user
+        User.objects.create(username="Amir22", email="amir@awesomemail.com", password="amirlittlelemon")
+        amir = User.objects.get(username='Amir22')
+        # creating booking with simulated authentication
+        booking = Booking.objects.create(username=amir, Name="Amir", No_of_guests="2", BookingDate="2024-10-03")
+        force_authenticate(booking, user=amir)
+        bookingstr = booking.get_booking()
+        # expected result
+        self.assertEqual(bookingstr, 'Amir : 2 : 2024-10-03')
+
+    def test_delete_booking(self):
+        booking = Booking.objects.filter(Name="Amir", No_of_guests="2", BookingDate="2024-10-03")
+        booking.delete()
+        self.assertEqual(Booking.objects.count(), 0)
