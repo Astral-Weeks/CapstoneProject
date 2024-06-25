@@ -73,19 +73,3 @@ class BookingView(generics.ListCreateAPIView):
         
         return [permission() for permission in permission_classes]
 
-
-    # def get_queryset(self, **kwargs):
-    #     if self.request.method == 'GET':
-    #         b = User.objects.filter(username=self.request.user.username)
-    #         if b.exists():
-    #             queryset = Booking.objects.filter(username=b)
-    #             return queryset
-
-
-    # def get_permissions(self):
-    #     if self.request.method == 'POST':
-    #         permission_classes = []
-    #     elif self.request.method == 'GET':
-    #         permission_classes = [IsAuthenticated]
-        
-    #     return [permission() for permission in permission_classes]
